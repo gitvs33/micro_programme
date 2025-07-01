@@ -1,8 +1,5 @@
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
-
-console.log('VITE_API_KEY in vite.config.ts:', process.env.VITE_API_KEY);
-
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd());
     return {
