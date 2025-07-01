@@ -99,4 +99,69 @@ const AnalysisPage = (): React.ReactNode => {
                                     <fieldset className="space-y-2">
                                         <legend className="sr-only">Options for: {q.question}</legend>
                                         {q.options.map((option: string, oIndex: number) => (
-                                            <label key={oIndex} htmlFor={`q${qIndex}o${oIndex}`} className={`
+                                            <label
+                                                key={oIndex}
+                                                htmlFor={`q${qIndex}o${oIndex}`}
+                                                className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all ${answers[qIndex] === option ? 'bg-indigo-100 border-indigo-500 ring-2 ring-indigo-300' : 'bg-white hover:bg-slate-50 border-slate-200'}`}
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id={`q${qIndex}o${oIndex}`}
+                                                    name={`question-${qIndex}`}
+                                                    value={option}
+                                                    checked={answers[qIndex] === option}
+                                                    onChange={() => handleAnswerChange(qIndex, option)}
+                                                    className="h-4 w-4 text-indigo-600 border-slate-300 focus:ring-indigo-500"
+                                                />
+                                                <span className="ml-3 text-sm font-medium text-slate-700">{option}</span>
+                                            </label>
+                                        ))}
+                                    </fieldset>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-8 text-center">
+                            <Button onClick={handleSubmit} size="lg" disabled={!areAllQuestionsAnswered}>
+                                Get My Feedback
+                            </Button>
+                        </div>
+                    </Card>
+                );
+            case 'showing-feedback':
+                if (!feedback) return null;
+                return (
+                    <div>
+                        <Card className="mb-4 bg-gradient-to-br from-purple-50 to-indigo-50">
+                            <h2 className="text-sm font-bold text-purple-700 mb-2 text-center uppercase tracking-wider">A Friendly Roast</h2>
+                            <p className="text-center text-xl font-medium text-slate-800" lang="ml">{feedback.humorous}</p>
+                        </Card>
+                        <Card>
+                            <h2 className="text-sm font-bold text-green-700 mb-2 text-center uppercase tracking-wider">A Gentle Nudge</h2>
+                            <p className="text-center text-lg text-slate-700">{feedback.serious}</p>
+                        </Card>
+                        <div className="mt-6 text-center">
+                            <Button onClick={handleReset} variant="secondary">Start Over</Button>
+                        </div>
+                    </div>
+                );
+            case 'error':
+                return (
+                    <Card className="text-center">
+                        <h2 className="text-xl font-bold text-red-600 mb-4">Oops!</h2>
+                        <p className="text-slate-600 mb-6">{error}</p>
+                        <Button onClick={handleReset}>Try Again</Button>
+                    </Card>
+                );
+        }
+    };
+
+    return (
+        <div className="min-h-full flex items-center justify-center p-4">
+            <div className="w-full max-w-2xl">
+                {renderContent()}
+            </div>
+        </div>
+    );
+};
+
+export default AnalysisPage;
