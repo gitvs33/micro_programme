@@ -5,7 +5,6 @@ import HomePage from './pages/HomePage';
 import ChillModePage from './pages/ChillModePage';
 import AnalysisPage from './pages/AnalysisPage';
 
-console.log('VITE_API_KEY from import.meta.env:', import.meta.env.VITE_API_KEY);
 
 function App(): React.ReactNode {
   return (
