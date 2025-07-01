@@ -32,8 +32,8 @@ const ProgressBar = ({ count }: { count: number }) => {
 
 
 const HomePage = (): React.ReactNode => {
-    const [status, setStatus] = useState<CheckInStatus>('initial');
-    const [currentGoal, setCurrentGoal] = useState<MicroGoal | null>(null);
+    const [status, setStatus] = useLocalStorage<CheckInStatus>('momentum-status', 'initial');
+    const [currentGoal, setCurrentGoal] = useLocalStorage<MicroGoal | null>('momentum-current-goal', null);
     const [completionMessage, setCompletionMessage] = useState<string>('');
     const [completionCount, setCompletionCount] = useLocalStorage<number>('momentum-completion-count', 0);
 
