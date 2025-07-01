@@ -5,7 +5,6 @@ import { MicroGoal, GoalCategory, AnalysisQuestion, AnalysisFeedback } from '../
 
 // Ensure the API key is available from environment variables
 const apiKey = import.meta.env.VITE_API_KEY;
-console.log("[GeminiService] API Key fetched:", apiKey ? "Yes" : "No");
 if (!apiKey) {
     console.warn("VITE_API_KEY environment variable not set. Gemini API features will be disabled, but the UI will load.");
 }
